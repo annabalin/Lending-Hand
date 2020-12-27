@@ -1,0 +1,72 @@
+<title>Lending Hand - Event Edit</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<form method="post" action="/updateEvent/<%= post._id %>">
+  <!--  nameEvent: String,
+  date: Date,
+  sTime: String,
+  duration: Number,
+  location: String,
+  zip: String,
+  maxpeople: Number,
+  description: String,
+  signed_up_people: [String],
+  authorId: Schema.Types.ObjectId,
+  id: Number,-->
+  <label>
+      <span>Name of event*:</span>
+      <input type="text" 
+         name="eventName" 
+         value="<%= post.nameEvent %>">
+    </label>
+    
+    <label>
+      <span>Date of event*:</span>
+      <input type="date" 
+             name="eventdate" 
+             value="<%= post.date %>">
+    </label>
+
+
+    <label>
+      <span>Start time*:</span>
+         <input type="text" 
+           name="sTime" 
+           value="<%= post.sTime %>">
+    </label>
+
+    <label>
+      <span>Duration of event (hours.min)*:</span>
+      <input type="number" 
+           name="duration" 
+           value="<%= post.duration %>" 
+           step=".01" required>
+    </label>
+
+    <label>
+      <span>Location*:</span>
+      <input type="text" 
+           name="location"
+           value="<%= post.location %>">
+    </label>
+
+    <label>
+      <span> Zip Code*:</span>
+      <input type="text" name="zip" value="<%= post.zip %>">
+    </label>
+
+
+    <label>
+      <span> Amount of people needed*:</span>
+      <input type="number" 
+           name="maxpeople"
+           value="<%= post.maxpeople %>">
+    </label>
+  <div class="eventdesc">
+    Provide a short description of your event: <br><br>
+    <textarea name="description" value ="post.description" rows="10" cols="40"></textarea>
+  </div>
+   <input type="submit">
+</form>
+<%- include('bootfooter') -%>

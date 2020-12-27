@@ -1,0 +1,29 @@
+<title>Lending Hand - Report Event</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<form method="post" action="/reportEvent/<%= post._id %>">
+  <!--  nameEvent: String,
+  date: Date,
+  sTime: String,
+  duration: Number,
+  location: String,
+  zip: String,
+  maxpeople: Number,
+  description: String,
+  signed_up_people: [String],
+  authorId: Schema.Types.ObjectId,
+  id: Number,-->
+  <h3>
+    Reporting: <%=post.nameEvent%>
+  </h3>
+  <label>
+      <span>Reason*:</span>
+      <input type="text" 
+         name="reason" 
+         placeholder="Reason">
+    </label>
+    
+   <input type="submit" value = "Report">
+</form>
+<%- include('bootfooter') -%>

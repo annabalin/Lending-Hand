@@ -1,0 +1,284 @@
+<meta name=”description” content="Lending Hand - A Non-Profit Connecting Youth To Opportunities ">
+
+<meta name=”keywords” content="lending hand, Lending Hand, non-profit, volunteer, opportunities, volunteer opportunities" />
+<title>Lending Hand - Home</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+
+    <div class="jumbotron">
+        <h1><strong><p style ="color:#6f73ab; ">Lending Hand</p> </strong></h1>
+        <h5><strong><p style ="color:#6f73ab; ">Helping should be easy.</p> </strong></h5>
+        <a href="/eventfeed">Your Feed</a>
+
+</div>
+<!--Delete the whole script tag area when you want to get rid of the alert-->
+<script>
+  window.alert("I detailed my changes in a comment on the homepage view file. Glad to see you here. Delete this if you want, just wanted to make sure you got my comment. - BN")
+</script>
+
+<!--
+Changes: Added tag feature to find by tag and topic. Will be adding ability to add multiple tags. Removed all old events to prevent errors. Added report feature to flag posts. If you look in
+moderator view, you can see reports on posts and filter by reported posts only (sorted in order of most reports). Also I sorted the feeds in asscending order now. I added a timeline to the homepage too. 
+IDK who made it decending but it makes more sense this way. Change it back if you really want it that way.
+
+ I suck at writing so if someone wants to write up a mission statement we could add to the homepage that'd be cool. Also, if someone could make the site look better that'd be nice. I'm also lacking in art skills.
+I'll add some cookies and stuff in the future for analytics and user expirence. Could come out pretty nice.
+
+Hope to see some of you guys on soon. 
+-Braedon
+-->
+<!--
+I'll take care of the mission statement and the UI. Some of the changes you made affected the font but that shouldn't be a big deal, I'll take a look at it.
+Cool stuff with the pop-ups and the timeline!! And I noticed the tag search too. I'm impressed.
+
+Please lmk whenever you do something else that's cool. Idk when you'll see this put hopefully soon.
+
+Hopefully all of us can get together to get going with this again. 
+-Anna
+-->
+
+<head>
+  <title> Lending Hand</title>
+  <meta name="description" content="Lending Hand">
+</head>
+<marquee>“It is really helpful for when trying to plan an event and allowing it to be accessible to anyone”  ---------- “This is a very relevant app. I feel like it could help a lot of high schoolers; kudos to the developers!” ----------  “I really like the idea of this app, with people being able to volunteer or ask for volunteers, I feel like it could be useful for many groups. Also, it gives a lot of options, like being able to create an event or searching for one.”
+</marquee>
+<style>
+.parallax {
+  /* The image used */
+  background-image: url("https://rueassociates.com/wp-content/uploads/2017/11/volunteer-2055042_1920-1.png");
+
+  /* Set a specific height */
+  height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<script>
+if (localStorage.getItem(‘cookieSeen’) != ‘shown’) {
+  $(‘.cookie-banner’).delay(2000).fadeIn();
+  localStorage.setItem(‘cookieSeen’,’shown’)
+};
+$(‘.close’).click(function() {
+  $(‘.cookie-banner’).fadeOut();
+})
+</script>
+<!--
+<div class=’cookie-banner’ style=’display: none’>
+<p>
+    By using our website, you agree to our 
+    <a href=’insert-link’>cookie policy</a>
+  </p>
+</div>
+-->
+<!-- Container element -->
+<div class="parallax"></div>
+
+<h4>
+  Our Timeline: 
+</h4>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #474e5d;
+  font-family: Helvetica, sans-serif;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 75%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #FF9F55;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+  left: 31px;
+  }
+  
+  /* Full-width containers */
+  .container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+  left: 15px;
+  }
+  
+  /* Make all right containers behave like the left ones */
+  .right {
+  left: 0%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="timeline">
+  <div class="container left">
+    <div class="content">
+      <h2>Late 2020</h2>
+      <p>Final updates to website, bold changes to UI, official rollout in targeted communities</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>Mid 2021</h2>
+      <p>Spread the growth of Lending Hand to a variety of platforms, including a mobile app and more. We will work to minimize downtime and prepare for a larger userbase.  </p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>Jan 1st, 2022</h2>
+      <p>Target new communities to grow more quickly, ensure we can handle larger usersets. By here we should be done adding the majority of features to the site and be focused on refining current features. Monetization strategies will be rolled out by this point. We will also consider presenting to groups to gain the support of a larger entity. </p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>Mid 2022</h2>
+      <p>Almost all attention focused on maintance and growth of relations. The site will become refined, but less drastic changes will take place at this point</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>Late 2022</h2>
+      <p> Depending on level of success, we would hire and grow the company beyond the founding members. Big changes on the company level, not many on the site level in order to keep things familiar. Construction or contracting of first datacenter if demand grows enough. 
+      </p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>Beyond</h2>
+      <p>We honestly have no idea what the future past this will bring, we hope to support this well beyond 2022 but understand life gets in the way at times. In the future, our values will remain clear and we will continue to build and grow for the betterment of hummanity. We hope to see you with us</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+   <!--
+ <form method="post" action="/testlogin">
+   <input type = "submit">
+</form>
+-->
+
+<html>
+   <head>
+      <title>HTML Background Color</title>
+   </head>
+   <body style="background-color:lightblue;">
+   </body>
+</html>
+
+
+<%- include('bootfooter') -%>

@@ -1,0 +1,164 @@
+<title>Lending Hand - Create Event</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+    
+<%if (loggedIn){ %>
+    <div class="jumbotron">
+        <h1 style = "text-align:center"><%= user.name -%></h1>
+        <p>This is where you can create an event</p>
+    </div>
+<div class="createevent">
+    <h1>
+      Create An Event
+    </h1>
+  <form method="post" action="/addToFeed">
+        <input type="hidden" name = "author" value = "<%= user.username %>">
+    <label>
+      <span>Name of event*:</span>
+      <input type="text" 
+         name="eventName" 
+         placeholder="enter event name here" required>
+    </label>
+    
+    <label>
+      <span>Date of event*:</span>
+      <input type="date" 
+             name="eventdate" 
+             placeholder="00/00/0000" required>
+    </label>
+
+
+    <label>
+      <span>Start time*:</span>
+         <input type="text" 
+           name="sTime" 
+           placeholder="X:00 am/pm" required>
+    </label>
+
+    <label>
+      <span>Duration of event (hours.min)*:</span>
+      <input type="number" 
+           name="duration" 
+           placeholder="X hours" 
+           step=".01" required>
+    </label>
+
+    <label>
+      <span>Location*:</span>
+      <input type="text" 
+           name="location"
+           placeholder="enter location here" required>
+    </label>
+
+    <label>
+      <span> Zip Code*:</span>
+      <input type="text" name="zip" placeholder="enter zip code" required>
+    </label>
+
+
+    <label>
+      <span> Amount of people needed*:</span>
+      <input type="number" 
+           name="maxpeople"
+           placeholder="max # of people" required>
+    </label>
+    <label>
+      <span> Tag:</span>
+      <input type="text" name="tag" placeholder="Enter a topic">
+    </label>
+
+    <br>
+    <br>
+<!--
+    <label>
+      <span>Is this a recurring event?</span>
+      <span class="input">
+          <label>
+            <input type="radio" name="recurevent" value="yes">Yes 
+          </label>
+          <label>
+            <input type="radio" name="recurevent" value="no">No
+          </label>
+      </span>
+    </label> -->
+   <div class="eventdesc">
+    Provide a short description of your event: <br><br>
+    <textarea name="description" rows="10" cols="40"></textarea>
+  </div>
+    <br>   
+  <hr>
+  <!--
+    <label>
+      <span>Enter Phone Number:</span>
+      <input type="text" name="number" placeholder="XXX-XXX-XXXX">
+    </label>
+    <label>
+   <span>Enter Your Email:</span>
+    <input type="text" name="email" placeholder="ex: smith@gmail.com">
+    </label>
+    <label>
+      <span>Enter a Password: </span>
+      <input type="password" name="password">
+    </label> -->
+
+    <div class="label">
+      <span class="flex-grow"></span>
+      <button type="submit">Create event</button>
+    </div>
+</div> 
+<%}else{ %>
+  Need To Login To View Info
+  <a href="/register"><b>LOGIN/REGISTER</b></a>
+
+<% }%>
+
+
+  
+  <html>
+   <head>
+      <title>HTML Backgorund Color</title>
+   </head>
+   <body style="background-color:lightblue;">
+   </body>
+</html>
+  
+  </form>
+
+
+
+<%- include('bootfooter') -%>
+<!--  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="zip">Zip Code</label>
+      <input type="text" class="form-control" name="zip" placeholder="enter zip code here" required>
+    </div>
+  </div> -->
+
+<!-- <label for="location">Location*:</label>
+
+      <input type="text" 
+           name="location"
+           placeholder="enter location here" required><br>
+    <br>
+
+    <label for="zip">Zip code*:</label>
+
+      <input type="text" 
+           name="zip"
+           placeholder="enter zip code here" required><br> -->

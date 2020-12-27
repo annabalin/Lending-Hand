@@ -1,0 +1,191 @@
+<title>Lending Hand - <%=userinfo.username%>'s Profile</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<!--THIS PAGE NOW ONLY SHOWS UP AFTER REGISTERING. IT STILL WILL APPEAR IN THE MENU BAR -->
+<%if (loggedIn){ %>
+    <div class="jumbotron">
+      <form method = "post" action ="/user-info">
+      <input type="submit" value="Return"/>
+      </form>
+    </div>
+<h1>
+  <%= userinfo.username %>
+</h1> <br>
+
+<img src=<%= userinfo.pImage %> alt="Profile Picture" width="300" height="200"> <br> <br>
+
+<% if (!userinfo.isOrganization&&(typeof userinfo.isOrganization !== 'undefined')) {%>
+
+<p>
+  User hours needed: <%= userinfo.hours %> <br>
+  User hours fulfilled: <%= userinfo.fillhrs %> <br>
+  </p>
+<br>
+<% } else { %>
+  Orginzation Contact info: <a href="mailto:<%= userinfo.email%>"><%=userinfo.email%></a><br>
+  Orginzation Link: <a href=<%= userinfo.link%>> <%= userinfo.link%></a> <br>
+  
+
+<%}}else{ %>
+  Need To Login To View Info
+  <a href="/register"><b>LOGIN/REGISTER</b></a>
+
+<% }%>
+<!--
+<h2>
+  Upload a profile picture?
+</h2>
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+
+</body>
+</html>
+-->
+
+
+<html>
+   <head>
+      <title>HTML Background Color</title>
+   </head>
+  <%if(typeof userinfo.background === 'undefined') {%>
+   <body style="background-color:lightblue;">
+  </body>
+  <%} else {%>
+   <body style="background-color:<%=userinfo.background%>">
+     
+   </body>
+  <%}%>
+</html>
+
+
+    
+<br> <!--But I think we will eventually need to pull the name string thing from the database-- yeah thats the issue is that it doesn't cooperate well witht the other data-->
+<!-- I got this script prompting stuff working, we could use it to modify some variables for editting personal info
+Look at the other part of the code somehow whenever javascrip is needed there is something like 
+yeah I don't get that. I looked it up and its some kind of template code
+<script>
+    var name = prompt("Are you over 13?");
+if (name.toLowerCase()==="yes"){
+  window.alert("okay");
+}
+else{
+  window.alert("stop using this account");
+}
+</script>
+
+
+--->
+<!--
+<iframe src="https://calendar.google.com/calendar/embed?src=brandeis.edu_cdqv1ul3cmb6fosnv1dj6gs2kc%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+-->
+<!--
+<html>
+  
+   <head>
+      <title>HTML Backgorund Color</title>
+   </head>
+   <body style="background-color:lightblue;" > 
+-->
+<!--
+<TABLE BORDER=3 CELLSPACING=3 CELLPADDING=3> 
+<TR>
+<TD COLSPAN="7" ALIGN=center><B>July 2020</B></TD> 
+</TR>
+<TR> 
+<TD COLSPAN="7" ALIGN=center><I>We're halfway there.</I></TD>
+</TR>
+<TR> 
+<TD ALIGN=center>Sun</TD>
+<TD ALIGN=center>Mon</TD>
+<TD ALIGN=center>Tue</TD>
+<TD ALIGN=center>Wed</TD>
+<TD ALIGN=center>Thu</TD>
+<TD ALIGN=center>Fri</TD>
+<TD ALIGN=center>Sat</TD>
+</TR>
+<TR> 
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center>1</TD>
+<TD ALIGN=center>2</TD>
+<TD ALIGN=center>3</TD>
+<TD ALIGN=center>4</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>5</TD>
+<TD ALIGN=center>6</TD>
+<TD ALIGN=center>7</TD>
+<TD ALIGN=center>8</TD>
+<TD ALIGN=center>9</TD>
+<TD ALIGN=center>10</TD>
+<TD ALIGN=center>11</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>12</TD>
+<TD ALIGN=center>13</TD>
+<TD ALIGN=center>14</TD>
+<TD ALIGN=center>15</TD>
+<TD ALIGN=center>16</TD>
+<TD ALIGN=center>17</TD>
+<TD ALIGN=center>18</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>19</TD>
+<TD ALIGN=center>20</TD>
+<TD ALIGN=center>21</TD>
+<TD ALIGN=center>22</TD>
+<TD ALIGN=center>23</TD>
+<TD ALIGN=center>24</TD>
+<TD ALIGN=center>25</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>26</TD>
+<TD ALIGN=center>27</TD>
+<TD ALIGN=center>28</TD>
+<TD ALIGN=center>29</TD>
+<TD ALIGN=center>30</TD>
+<TD ALIGN=center>31</TD>
+<TD ALIGN=center></TD>
+</TR>
+<TR> 
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+
+</TR>
+</TABLE>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calendar</title>
+        <script type="text/javascript" src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div id="calendar">
+            <p id="calendar-day"></p>
+            <p id="calendar-date"></p>
+            <p id="calendar-month-year"></p>
+        </div>
+    </body>
+</html>
+-->
+<!-- Add an additional blue button style 
+https://yuilibrary.com/yui/docs/calendar/calendar-simple.html -->
+<!--</body>
+</html> -->
+<%- include('bootfooter') -%>

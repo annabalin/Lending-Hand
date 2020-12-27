@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+    <a class="navbar-brand" href="/"><img src="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685" width="50"> Lending Hand</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+<!--
+      <li class="nav-item ">
+        <a class="nav-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Important Resources<span class="sr-only">(current)</span></a>
+      </li>
+Never gonna give you up
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/testing">Testing</a>
+      </li>
+      
+   
+-->      
+      <li class="nav-item">
+        <a class="nav-link" href="/eventfeedall">Feed</a>
+      </li>
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/searchpage">Search By Zip</a>
+      </li>
+      
+  
+       
+      <% if (!loggedIn) {%>
+      
+     <li class="nav-item">
+        <a class="nav-link" href="/about">About Us</a>
+      </li>
+      
+       <li class="nav-item">
+        <a class="nav-link" href="/register">Register/Login</a>
+      </li>
+      
+      
+      <% } else { %> <!--Below is for logged in users only -->
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/eventfeed">Personal Feed</a>
+      </li>
+      <%if(1 || user.isOrganization) {%>
+      <li class="nav-item ">
+        <a class="nav-link" href="/createevent">Create An Event<span class="sr-only">(current)</span></a>
+      </li>
+      <%}%>
+      <li class="nav-item ">
+        <a class="nav-link" href="http://lending-hand.glitch.me/user-info">Profile Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About Us</a>
+      </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout <%= user.username %></a>
+      </li>
+      
+      <%if (user._id==="5f106e3d4f6f1f2d355f20fb"||user._id==="5f075797a87c4a3967960b27"||user._id==="5f088f91e0b9122d91d4bac5"||user._id==="5f08c55e95292512aacb6606"||user._id=="5f0dd6b60235ad4df6e54fe2"||user._id==="5f0c7e02f0e8975ab02b7e64"||user._id==="5f0c7e02f0e8975ab02b7e64"||user._id==="5f07590598b1743ebe6c8df3"||user._id==="5f075797a87c4a3967960b27"||user._id==="5f08bdb70800b57675618df2"||user._id==="5f0758e298b1743ebe6c8df2"||user._id==="5f0c6ecdf91a4412e588c4af" || user._id ==="5f0c6ecdf91a4412e588c4af"){%>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/moderatorview">Mod View Page</a>
+      </li>
+      
+      <%}%>
+      <% } %>
+
+    </ul>
+
+  </div>
+</nav>
+
+

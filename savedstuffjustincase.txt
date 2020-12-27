@@ -1,0 +1,10 @@
+<b> <%= x.eventname %> </b> <br>
+  Zip Code: <%= x.zip %> <br>
+  Event Date: <%= x.eventdate %> <br>
+  Starts: <%= x.starttime %>, Ends: <%= x.endtime %> <br>
+  <%= x.maxpeople %> people are needed for this event. <br>
+  <% if (y.findzip===x.zip) { %>
+<%console.log("creating event")%>
+  
+<% } %>
+<% }) %> 

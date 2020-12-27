@@ -1,0 +1,42 @@
+<title>Lending Hand - User-Info</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<form method="post" action="/updateUser/<%= post._id %>">
+  <!--  
+  name: String,
+  username: String,
+  passphrase: String,
+  userevents: [String],
+  email: String, 
+  age: String, 
+  zip: String,
+  hours: String,
+  link: String,
+  pImage: String
+-->
+  <label>
+      <span>Real Name*:</span>
+      <input type="text" 
+         name="realName" 
+         value="<%= post.name %>">
+    </label>
+    
+    <label>
+      <span>Zip of user*:</span>
+      <input type="text" 
+             name="userZip" 
+             value="<%= post.zip %>">
+    </label>
+
+
+    <label>
+      <span>User Email*:</span>
+         <input type="text" 
+           name="userEmail" 
+           value="<%= post.email %>">
+    </label>
+
+   <input type="submit">
+</form>
+<%- include('bootfooter') -%>
