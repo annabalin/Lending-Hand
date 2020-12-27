@@ -1,0 +1,327 @@
+<title>Lending Hand - User-Info</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<!--THIS PAGE NOW ONLY SHOWS UP AFTER REGISTERING. IT STILL WILL APPEAR IN THE MENU BAR -->
+<%if (loggedIn){ %>
+    <div class="jumbotron">
+      <form method = "post" action = "/lookupAUser">
+        
+        <span style ="font-size:250%">Look Up A User By Username: </span>
+
+        <input type = "text" placeholder = "Username" name = "lookup">
+
+          <button type = "submit">Look up</button> 
+                <i>You will be redirected back to this page if no user is found</i>
+      </form>
+    </div>
+<h1>
+  <strong><%= user.name %></strong>
+</h1> <br>
+<h2>
+  Welcome <%=user.name%>
+</h2>
+<br> <br>
+<div class="row">
+  <div class="col-md-3.5">
+<img src="<%= user.pImage %>" alt="Profile Picture" width="300" height="200"> <br> <br>
+Upload a profile picture (first appears on next login): 
+<form method = "post" action ="/updatepImage">
+  <input type= "text" placeholder = "URL Of Wanted Image" name="profileImage"> 
+  <input type="hidden" name = "user_id" value = "<%= user._id %>">
+  <button type = "submit">Upload Picture</button> 
+</form>
+    <br>
+  Choose a profile background:
+  <form method="post" action="/backgroundPicker">
+    <input type="hidden" name = "user_id" value = "<%= user._id %>">
+    <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+    <input type="submit">
+  </form>
+      </div>
+      <div class="col">
+        <br><br><br>
+        
+<p>
+  <strong>Username: </strong><%= user.username %><br><br>
+  <% if (user.link != null){ %>
+     <strong>Website: </strong><%= user.link %><br><br>
+  <% } %>
+  <strong>Email Address: </strong><%= user.email %> <br><br>
+  <strong>Zip Code: </strong><%= user.zip %> <br><br>
+  <strong>Hours Needed: </strong><%= user.hours %> <br><br>
+  <strong>Hours Filled: </strong><%= user.fillhrs %><br>
+</p>                             
+        <a href="/editUser/<%= user._id %>">Edit</a>
+
+        </div>
+
+<div class="col">
+  <style>
+ .yui3-button {
+    margin:10px 0px 10px 0px;
+    color: #fff;
+    background-color: #3476b7;
+}
+</style>
+
+<div id="demo" class="yui3-skin-sam yui3-g"> <!-- You need this skin class -->
+
+  <div id="leftcolumn" class="yui3-u">
+     <!-- Container for the calendar -->
+     <div id="mycalendar">
+
+    </div>
+         
+
+     </div>
+
+  <div id="rightcolumn" class="yui3-u">
+   <div id="links" style="padding-left:20px;">
+      <!-- The buttons are created simply by assigning the correct CSS class -->
+<!--      <button id="togglePrevMonth" class="yui3-button">Toggle Previous Month's Dates</button><br>-->
+      <!--<button id="toggleNextMonth" class="yui3-button">Toggle Next Month's Dates</button><br> -->
+      Selected date: <span id="selecteddate"></span>
+   </div>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+YUI().use('calendar', 'datatype-date', 'cssbutton',  function(Y) {
+
+    // Create a new instance of calendar, placing it in
+    // #mycalendar container, setting its width to 340px,
+    // the flags for showing previous and next month's
+    // dates in available empty cells to true, and setting
+    // the date to today's date.
+    var calendar = new Y.Calendar({
+      contentBox: "#mycalendar",
+      width:'340px',
+      showPrevMonth: true,
+      showNextMonth: true,
+      date: new Date()}).render();
+
+    // Get a reference to Y.DataType.Date
+    var dtdate = Y.DataType.Date;
+
+    // Listen to calendar's selectionChange event.
+    calendar.on("selectionChange", function (ev) {
+
+      // Get the date from the list of selected
+      // dates returned with the event (since only
+      // single selection is enabled by default,
+      // we expect there to be only one date)
+      var newDate = ev.newSelection[0];
+
+      // Format the date and output it to a DOM
+      // element.
+      Y.one("#selecteddate").setHTML(dtdate.format(newDate));
+      if(typeof eventslist !== 'undefined'&&eventsList !== null) {
+      var eventslist = <%-eventlist%>
+      for( var h = 0; h < eventslist.length; h++){
+        var event = eventslist[h]
+        console.log(newDate)
+        console.log(event.date)
+        if( event.date === JSON.stringify(newDate) ){
+          console.log(newDate)
+          console.log(event.date)
+          Y.one("#selecteddate").setHTML(event.nameEvent);
+          
+   
+        } 
+      }
+      }
+    });
+  
+    //I think here is where we could include a way to have the 
+    //events of the selected date show up if signed up for an event...
+  /*
+  Y.one("#selecteddate") 
+  <input 
+  */
+
+    // When the 'Show Previous Month' link is clicked,
+    // modify the showPrevMonth property to show or hide
+    // previous month's dates
+    Y.one("#togglePrevMonth").on('click', function (ev) {
+      ev.preventDefault();
+      calendar.set('showPrevMonth', !(calendar.get("showPrevMonth")));
+    });
+
+    // When the 'Show Next Month' link is clicked,
+    // modify the showNextMonth property to show or hide
+    // next month's dates
+    Y.one("#toggleNextMonth").on('click', function (ev) {
+      ev.preventDefault();
+      calendar.set('showNextMonth', !(calendar.get("showNextMonth")));
+    });
+});
+
+</script>
+  </div>
+</div>
+<%}else{ %>
+  Need To Login To View Info
+  <a href="/register"><b>LOGIN/REGISTER</b></a>
+
+<% }%>
+<!--
+<h2>
+  Upload a profile picture?
+</h2>
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+
+</body>
+</html>
+-->
+
+<br>
+
+<html>
+   <head>
+      <title>HTML Background Color</title>
+   </head>
+  <%if(typeof user.background === 'undefined') {%>
+   <body style="background-color:lightblue;">
+    
+  </body>
+  <%} else {%>
+   <body style="background-color:<%=user.background%>">
+     
+   </body>
+  <%}%>
+</html>
+
+
+    
+<br> <!--But I think we will eventually need to pull the name string thing from the database-- yeah thats the issue is that it doesn't cooperate well witht the other data-->
+<!-- I got this script prompting stuff working, we could use it to modify some variables for editting personal info
+Look at the other part of the code somehow whenever javascrip is needed there is something like 
+yeah I don't get that. I looked it up and its some kind of template code
+<script>
+    var name = prompt("Are you over 13?");
+if (name.toLowerCase()==="yes"){
+  window.alert("okay");
+}
+else{
+  window.alert("stop using this account");
+}
+</script>
+
+
+--->
+<!--
+<iframe src="https://calendar.google.com/calendar/embed?src=brandeis.edu_cdqv1ul3cmb6fosnv1dj6gs2kc%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+-->
+<!--
+<html>
+  
+   <head>
+      <title>HTML Backgorund Color</title>
+   </head>
+   <body style="background-color:lightblue;" > 
+-->
+<!--
+<TABLE BORDER=3 CELLSPACING=3 CELLPADDING=3> 
+<TR>
+<TD COLSPAN="7" ALIGN=center><B>July 2020</B></TD> 
+</TR>
+<TR> 
+<TD COLSPAN="7" ALIGN=center><I>We're halfway there.</I></TD>
+</TR>
+<TR> 
+<TD ALIGN=center>Sun</TD>
+<TD ALIGN=center>Mon</TD>
+<TD ALIGN=center>Tue</TD>
+<TD ALIGN=center>Wed</TD>
+<TD ALIGN=center>Thu</TD>
+<TD ALIGN=center>Fri</TD>
+<TD ALIGN=center>Sat</TD>
+</TR>
+<TR> 
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center>1</TD>
+<TD ALIGN=center>2</TD>
+<TD ALIGN=center>3</TD>
+<TD ALIGN=center>4</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>5</TD>
+<TD ALIGN=center>6</TD>
+<TD ALIGN=center>7</TD>
+<TD ALIGN=center>8</TD>
+<TD ALIGN=center>9</TD>
+<TD ALIGN=center>10</TD>
+<TD ALIGN=center>11</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>12</TD>
+<TD ALIGN=center>13</TD>
+<TD ALIGN=center>14</TD>
+<TD ALIGN=center>15</TD>
+<TD ALIGN=center>16</TD>
+<TD ALIGN=center>17</TD>
+<TD ALIGN=center>18</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>19</TD>
+<TD ALIGN=center>20</TD>
+<TD ALIGN=center>21</TD>
+<TD ALIGN=center>22</TD>
+<TD ALIGN=center>23</TD>
+<TD ALIGN=center>24</TD>
+<TD ALIGN=center>25</TD>
+</TR>
+<TR> 
+<TD ALIGN=center>26</TD>
+<TD ALIGN=center>27</TD>
+<TD ALIGN=center>28</TD>
+<TD ALIGN=center>29</TD>
+<TD ALIGN=center>30</TD>
+<TD ALIGN=center>31</TD>
+<TD ALIGN=center></TD>
+</TR>
+<TR> 
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+<TD ALIGN=center></TD>
+
+</TR>
+</TABLE>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calendar</title>
+        <script type="text/javascript" src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div id="calendar">
+            <p id="calendar-day"></p>
+            <p id="calendar-date"></p>
+            <p id="calendar-month-year"></p>
+        </div>
+    </body>
+</html>
+-->
+<!-- Add an additional blue button style 
+https://yuilibrary.com/yui/docs/calendar/calendar-simple.html -->
+<!--</body>
+</html> -->
+<%- include('bootfooter') -%>

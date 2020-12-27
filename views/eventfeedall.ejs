@@ -1,0 +1,70 @@
+<title>Lending Hand - All Events</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+
+<html>
+   <head>
+      <title>HTML Background Color</title>
+   </head>
+   <body style="background-color:lightblue;">
+   </body>
+</html>
+<%if(loggedIn){ %> 
+ <% events.forEach(x => {%>  <!-- ok they are good -->
+  <hr> <h5> <%= x.nameEvent %> </h5> 
+  Zip Code: <%= x.zip %> <br>
+  Event Date: <%= x.date %> <br>
+  Starts: <%= x.sTime %>, Duration: <%= x.duration%> hours <br>
+  Event is at: <%=x.location%> <br>
+  <%= x.description %> <br><br>
+  <%= x.maxpeople %> more people are needed for this event. <br>
+  Tags: <a href= "findByTag/<%= x.tag %>"><%=x.tag%></a><br>
+    <%= x.signed_up_people.length %> people have already signed up. <a href="/userssignedup/<%=x._id%>">Click here to view all signed up</a><br><br>
+  Created by: <a href="/viewUserPage/<%= x.author %>"><%=x.author%></a> <br>
+  <% if (user._id == x.authorId) {%> 
+                     <a href="/deleteEventPost/<%= x._id %>" onclick="return confirm('Are you sure?')">Delete</a>
+                                or
+                     <a href="/editEventPost/<%= x._id %>">Edit</a>
+               <% } else {%>
+                     <a href="/reportEventPost/<%= x._id %>">Report</a>
+<%}%>
+
+<!-- The issue was declaring the variable as a boolean, you can't do that in JS for some reason and have to be general and do "let"
+or const  && x.date.getTime() > Date().getTime-->
+  <% if (x.signed_up_people.includes(user._id)) {%>
+  <form method="post" action="/cancel" >
+    <input type="hidden" name = "event_id" value = "<%= x._id %>">
+        <input type="hidden" name = "caller" value = "/eventfeedall">
+    <button type="submit"> Cancel </button>
+</form>
+  <!-- To add cancel button -->
+  <%}else if (x.maxpeople > 0){%>
+  <form method="post" action="/sign_up_to_event" >
+    <input type="hidden" name = "event_id" value = "<%= x._id %>">
+    <input type="hidden" name = "caller" value = "/eventfeedall">
+    <button type="submit"> Sign Up </button>
+  </form>
+  <%}%>
+
+<!-- Marko messed this up -->
+<% }) %>
+
+<%}else{ %>
+<h1>
+   You have to log in to view your personalized feed
+</h1>
+<hr>
+<form action="/register">
+   <input type="submit" value="Login/Register Now" />
+</form>
+
+   
+      
+   <body style="background-color:lightblue;">
+   </body>
+
+
+
+<%} %> 
+<%- include('bootfooter') -%>

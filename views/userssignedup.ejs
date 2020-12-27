@@ -1,0 +1,31 @@
+<title>Lending Hand - Event Signups</title>
+<link rel="icon" href="https://cdn.glitch.com/a1d52a90-09e0-4755-8054-b7d1c59f8abe%2FLendingHandWeireder.png?v=1594829173685">
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+<!--Use variable post as the event. EXAMPLE: post.name to acess it-->
+<!--You guys got this working! Great job!-->
+<ol>
+
+<% let counter =0;
+users.forEach ( x=> {
+counter++;%>
+  <li> <%=x.username%></li> <br>
+<% })
+
+if (counter==0) {%>
+  No Current Signups
+  <%}%>
+  
+  
+  </ol>
+<html>
+   <head>
+      <title>HTML Background Color</title>
+   </head>
+   <body style="background-color:lightblue;">
+   </body>
+</html>
+
+
+   
+<%- include('bootfooter') -%>
