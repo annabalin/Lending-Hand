@@ -22,8 +22,9 @@ var num_events = 0;
 // connect to a database
 
 const mongoose = require("mongoose");
-const mongodb_URI = process.env.MONGODB_URI; // was 'mongodb://localhost/hsad'
-mongoose.connect(mongodb_URI, { useNewUrlParser: true });
+const mongodb_URI = "mongodb+srv://annabalin:Dw@1in1245@cluster0.3w3um.mongodb.net/Lending-Hand?retryWrites=true&w=majority"; // was 'mongodb://localhost/hsad'
+console.log(mongodb_URI);
+mongoose.connect(mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
@@ -168,7 +169,9 @@ app.get("/about", (req, res) => {
   
 });
 app.use("/user-info", async (req, res) => {
+  console.log("sup");
   res.locals.eventlist = await Events.find();
+  console.log("yup");
   /*
   for( var h = 0; h < res.locals.user.eventslist.length; h++){
         var event = await Events.findOne({_id: res.locals.user.eventslist[h]})
